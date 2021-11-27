@@ -24,7 +24,7 @@ export const Task3 = (props) => {
         for (let n = 0; n <= N; n++) {
             if (x <= x2) {
                 let result = Math.pow(2 * x, n) / factorial(n)
-                let y = Math.exp(2 * x)
+                let y = props.y ? props.y(x) : Math.exp(2 * x)
                 res.push(`при x = ${x} сумма = ${result} Y(x) = ${y}`)
                 x += H
             }
@@ -34,7 +34,7 @@ export const Task3 = (props) => {
 
     return (
         <div className='center '>
-            <h1>Task3</h1>
+            {props.y !== undefined ? <></> : <h1>Task3</h1>}
             <div className='row between'>
                 <div className='column'>
                     <label>
