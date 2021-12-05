@@ -7,6 +7,7 @@ import Task5 from './Tasks/Task5';
 import Task6 from './Tasks/Task6';
 import Task7 from './Tasks/Task7';
 import Task8 from './Tasks/Task8';
+import Task9 from './Tasks/Task9'
 import Task10 from './Tasks/Task10'
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
         <Link style={{ marginRight: 10 }} to='Task6' >Task6</Link>
         <Link style={{ marginRight: 10 }} to='Task7' >Task7</Link>
         <Link style={{ marginRight: 10 }} to='Task8' >Task8</Link>
-
+        <Link style={{ marginRight: 10 }} to='Task9' >Task9</Link>
         <Link style={{ marginRight: 10 }} to='Task10' >Task10</Link>
       </nav>
       <Routes>
@@ -31,7 +32,7 @@ function App() {
         <Route path="/Task6" element={<Task6 />} />
         <Route path="/Task7" element={<Task7 />} />
         <Route path="/Task8" element={<Task8 />} />
-
+        <Route path="/Task9" element={<Task9 />} />
         <Route path="/Task10" element={<Task10 />} />
       </Routes>
     </div>
