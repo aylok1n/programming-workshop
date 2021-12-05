@@ -58,24 +58,16 @@ export default class Complex {
     static task(xMin, xMax, h) {
         let array = [];
         let x = xMin;
-        let j = new Complex(0, 1);
         do {
-            let mult = new Complex();
+            let mult
             for (let k = 0; k <= 10; k++) {
-                let topNumerator = this.mult(
-                    this.sub(
-                        this.sub(
-                            j,
-                            new Complex(2 * k)
-                        ),
-                        new Complex(3)
-                    ),
-                    new Complex(x)
-                )
-                let topDenominator = this.sub(j, new Complex(x * k))
-                let numerator = this.add(j, this.div(topNumerator, topDenominator))
-                let denominator = this.mult(j, new Complex(x))
+                let topNumerator = this.mult(new Complex(-2 * k - 3, 1), new Complex(x))
+                let topDenominator = new Complex(-k * x, 1)
+                let numerator = this.add(this.div(topNumerator, topDenominator), new Complex(0, 1))
+                let denominator = this.ln(new Complex(x, 1))
+
                 let result = this.div(numerator, denominator);
+                if (!mult) mult = result
                 mult = this.mult(mult, result);
             }
             array.push({
