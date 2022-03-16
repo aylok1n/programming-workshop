@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './styles.css'
 
 export const Task4 = (props) => {
-    const [N, setN] = useState(0)
-    const [M, setM] = useState(0)
-    const [matrix, setMatrix] = useState([
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0],
-    ])
+    const [N, setN] = useState(3)
+    const [M, setM] = useState(3)
+    const [matrix, setMatrix] = useState([[]])
+    const [saddlePoint, setSaddlePoint] = useState(false)
 
     const setMatr = () => {
         let matr = [];
@@ -19,12 +16,46 @@ export const Task4 = (props) => {
             }
         }
         setMatrix(matr)
+        findSaddlePoint(matr)
     }
 
-    const calculate = () => {
-        let matr = [...matrix]
-        setMatrix(matr.sort((n, m) => m.reduce((a, b) => a + b, 0) - n.reduce((a, b) => a + b, 0)))
+    const findSaddlePoint = (matr) => {
+        for (let i = 0; i < matr.length; i++) {
+            let rowMin = matr[i][0];
+
+            let colIndex = 0;
+
+            let saddlePoint = true;
+
+            //Finding the smallest element in ith row
+            for (let j = 1; j < matr[i].length; j++) {
+                if (matr[i][j] < rowMin) {
+                    rowMin = matr[i][j];
+
+                    colIndex = j;
+                }
+            }
+
+            //Checking rowMin is also the largest element in its column
+
+            for (let j = 0; j < matr.length; j++) {
+                if (matr[j][colIndex] > rowMin) {
+                    saddlePoint = false;
+                    break;
+                }
+            }
+
+            if (saddlePoint) {
+                setSaddlePoint(rowMin);
+            }
+            else setSaddlePoint(false);
+
+        }
     }
+
+    useEffect(() => {
+        setMatr()
+    }, [])
 
     return (
         <div className='center '>
@@ -42,16 +73,19 @@ export const Task4 = (props) => {
                 </div>
             </div>
             <button onClick={setMatr}>Заполнить</button>
-            <button onClick={calculate}>Выполнить</button>
             {matrix?.map((N, indexN) => (
                 <div key={indexN}>
                     {N?.map((M, indexM) => (
                         <span style={{ marginRight: 10 }} key={indexM}>{M}</span>
                     ))}
-                    сумма строки {N.reduce((a, b) => a + b, 0)}
                 </div>
             ))}
+            {saddlePoint && <div>
+                седловая точка: {saddlePoint}
+            </div>}
         </div>
     )
 }
+
+
 export default Task4
