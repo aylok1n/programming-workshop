@@ -7,7 +7,7 @@ export const Task7 = (props) => {
     const [res, setRes] = useState('')
 
     const calculate = () => {
-        setRes((parseInt(a, 11) + parseInt(b, 11)).toString(11))
+        setRes((parseInt(a, 14) + parseInt(b, 14)).toString(14))
 
     }
 
@@ -25,7 +25,7 @@ export const Task7 = (props) => {
                 сумма {res}
             </div>
             <div className='column'>
-                сумма в десятичной {parseInt(res, 11)}
+                сумма в десятичной {parseInt(res, 14)}
             </div>
         </div>
     )
